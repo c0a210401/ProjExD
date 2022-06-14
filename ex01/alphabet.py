@@ -1,16 +1,21 @@
 import random
+import datetime
 
 q_word = 8
 de_word = 2
 kai = 3
 
 def main():
+    st = datetime.datetime.now()
     for i in range(kai):
         mon = show_alp()
         fin = kaitou(mon)
         if fin != 0:
             pass
         else:
+            ed = datetime.datetime.now()
+            time = (ed-st).seconds
+            print(f"クリアまで{time}秒かかりました")
             break
 
 def show_alp():
