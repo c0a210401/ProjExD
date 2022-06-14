@@ -1,12 +1,22 @@
 import random
+
+q_word = 8
+de_word = 2
+kai = 3
+
 def main():
-    mon = show_alp()
-    kaitou(mon)
+    for i in range(kai):
+        mon = show_alp()
+        fin = kaitou(mon)
+        if fin != 0:
+            pass
+        else:
+            break
 
 def show_alp():
     alpha_list = [chr(x+65) for x in range(26)]
-    q_alp = random.sample(alpha_list, 8)
-    del_list = [random.choice(q_alp) for de in range(2)]
+    q_alp = random.sample(alpha_list, q_word)
+    del_list = [random.choice(q_alp) for de in range(de_word)]
     delcount = len(del_list)
     show_list = q_alp.copy()
     [show_list.remove(d) for d in del_list]
@@ -30,7 +40,9 @@ def kaitou(mon):
         if bad == 0:
             print("おみごと! 全問正解です")
     else:
+        bad += 1
         print("不正解です。 またチャレンジしてください")
+    return bad
 
 if __name__ ==  "__main__":
     main()
