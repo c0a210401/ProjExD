@@ -21,7 +21,7 @@ def main():
 def show_alp():
     alpha_list = [chr(x+65) for x in range(26)]
     q_alp = random.sample(alpha_list, q_word)
-    del_list = [random.choice(q_alp) for de in range(de_word)]
+    del_list = random.sample(q_alp, de_word)
     delcount = len(del_list)
     show_list = q_alp.copy()
     [show_list.remove(d) for d in del_list]
