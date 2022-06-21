@@ -25,4 +25,8 @@ if __name__ ==  "__main__":
     entry = tk.Entry(justify=tk.RIGHT, width=10, font=("Times New Roman", 40))
     entry.grid(row=0, column=0, columnspan=3)
 
+    button_plus = tk.Button(root, text="+", font=("Times New Roman", 30), height=2, width=4, command=button_click)
+    button_plus.grid(row=4, column=1)
+    button_plus.bind("<1>", button_click)
+
     root.mainloop()
