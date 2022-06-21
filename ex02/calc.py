@@ -4,7 +4,6 @@ import tkinter.messagebox as tkm
 if __name__ ==  "__main__":
     root = tk.Tk()
     root.title("tk")
-    root.geometry("300x570")
 
     def button_click(event):
         btn = event.widget
