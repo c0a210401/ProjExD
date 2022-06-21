@@ -16,7 +16,7 @@ if __name__ ==  "__main__":
         txt = btn["text"]
         form = entry.get()[-1]
         if "+" in form or "-" in form or "*" in form or "/" in form:
-            tkm.showinfo("エラー", f"記号は連続できません")
+            tkm.showinfo("エラー", "記号は連続できません")
         else:
             entry.insert(tk.END, txt)
 
@@ -31,7 +31,7 @@ if __name__ ==  "__main__":
     def Convert(event):
         num = entry.get()
         if "+" in num or "-" in num or "*" in num or "/" in num:
-            tkm.showinfo("エラー", f"計算し終えてください")
+            tkm.showinfo("エラー", "計算し終えてください")
         else:
             try:
                 new_num = int(num)
@@ -56,7 +56,7 @@ if __name__ ==  "__main__":
             entry.insert(tk.END, math.factorial(num))
             math.factorial(5)
         except ValueError:
-            tkm.showinfo("エラー", f"整数のみでしか計算できません")
+            tkm.showinfo("エラー", "整数のみでしか計算できません")
 
     r,c = 2,0
     for text in [7, 8, 9, 4, 5, 6, 1, 2, 3, 0]:
