@@ -9,6 +9,7 @@ if __name__ ==  "__main__":
     def button_click(event):
         btn = event.widget
         txt = btn["text"]
+        entry.insert(tk.END, txt)
         tkm.showinfo(txt, f"[{txt}]ボタンが押されました")
     
     r,c = 1,0
