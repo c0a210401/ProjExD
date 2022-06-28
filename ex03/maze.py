@@ -1,11 +1,16 @@
 import tkinter as tk
 
-global key
-
 def key_down(event):
+    global key
     key = event.keysym
 
+def key_up(event):
+    global key
+    key = ""
+
 if __name__ == "__main__":
+    global key
+
     key = ""
     
     root = tk.Tk()
@@ -19,5 +24,6 @@ if __name__ == "__main__":
     canvas.create_image(cx, cy, image=tori, tag="tori")
 
     root.bind("<KeyPress>", key_down)
+    root.bind("<KeyRelease>", key_up)
 
     root.mainloop()
