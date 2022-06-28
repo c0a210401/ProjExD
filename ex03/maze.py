@@ -17,13 +17,13 @@ def main_proc():
         "Down" : [0, +1],
         "Left" : [-1, 0],
         "Right": [+1, 0],
-    }
+        }
     try:
         if maze[my+mas_d[key][1]][mx+mas_d[key][0]] == 0:
             my, mx = my+mas_d[key][1], mx+mas_d[key][0]
     except:
         pass
-    cx, cy = mx*100+50, my*100+50
+    cx, cy = mx * 100 + 50, my * 100 + 50
     bunsin()
     if my == 7 and mx == 13:
         tori = tk.PhotoImage(file="fig/6.png")
