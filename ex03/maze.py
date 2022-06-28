@@ -2,6 +2,9 @@ import tkinter as tk
 
 global key
 
+def key_down(event):
+    key = event.keysym
+
 if __name__ == "__main__":
     key = ""
     
@@ -14,5 +17,7 @@ if __name__ == "__main__":
     tori = tk.PhotoImage(file="fig/8.png")
     cx, cy = 300, 400
     canvas.create_image(cx, cy, image=tori, tag="tori")
+
+    root.bind("<KeyPress>", key_down)
 
     root.mainloop()
