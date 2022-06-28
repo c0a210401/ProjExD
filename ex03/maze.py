@@ -10,12 +10,20 @@ def key_up(event):
     key = ""
 
 def main_proc():
-    global cx, cy
-    if key == "Up":      cy -= 20
-    elif key == "Down":  cy += 20
-    elif key == "Left":  cx -= 20
-    elif key == "Right": cx += 20
-    else:                pass
+    global cx, cy, mx, my
+    mas_d = {
+        ""     : [0, 0],
+        "Up"   : [0, -1],
+        "Down" : [0, +1],
+        "Left" : [-1, 0],
+        "Right": [+1, 0],
+    }
+    try:
+        if maze[my+mas_d[key][1]][mx+mas_d[key][0]] == 0:
+            my, mx = my+mas_d[key][1], mx+mas_d[key][0]
+    except:
+        pass
+    cx, cy = mx*100+50, my*100+50
     canvas.coords("tori", cx, cy)
     root.after(100, main_proc)
 
@@ -29,7 +37,8 @@ if __name__ == "__main__":
     mm.show_maze(canvas, maze)
 
     tori = tk.PhotoImage(file="fig/8.png")
-    cx, cy = 300, 400
+    mx, my = 1, 1
+    cx, cy = mx*100+50, my*100+50
     canvas.create_image(cx, cy, image=tori, tag="tori")
     key = ""
 
