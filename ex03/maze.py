@@ -1,8 +1,8 @@
 import tkinter as tk
 
-if __name__ == "__main__":
-    global key
+global key
 
+if __name__ == "__main__":
     key = ""
     
     root = tk.Tk()
