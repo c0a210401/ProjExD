@@ -22,6 +22,16 @@ def main():
             if event.type == pg.QUIT:
                 return
 
+        key_states = pg.key.get_pressed()
+        if key_states[pg.K_UP] == True:
+            pg.Rect.move_ip(tori_rect, (0, -1))
+        if key_states[pg.K_DOWN] == True:
+            pg.Rect.move_ip(tori_rect, (0, 1))
+        if key_states[pg.K_LEFT] == True:
+            pg.Rect.move_ip(tori_rect, (-1, 0))
+        if key_states[pg.K_RIGHT] == True:
+            pg.Rect.move_ip(tori_rect, (1, 0))
+
         pg.display.update()
 
         clock = pg.time.Clock()
