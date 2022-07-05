@@ -9,11 +9,17 @@ def main():
     bg_img = pg.image.load("fig/pg_bg.jpg")
     bg_rect = bg_img.get_rect()
 
-    screen_img.blit(bg_img, bg_rect)
+    while True:
+        screen_img.blit(bg_img, bg_rect)
 
-    pg.display.update()
-    clock = pg.time.Clock()
-    clock.tick(0.5)
+        for event in pg.event.get():
+            if event.type == pg.QUIT:
+                return
+
+        pg.display.update()
+
+        clock = pg.time.Clock()
+        clock.tick(1000)
 
 
 if __name__ == "__main__":
