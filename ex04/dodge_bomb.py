@@ -30,6 +30,8 @@ def main():
 
     bom_rect.center = randint(0, screen_rect.width), randint(0, screen_rect.height)     # 爆弾の初期位置を画面内でランダムに指定
 
+    vx, vy = 1, 1        # 爆弾の初期移動速度を指定 vx:横方向 vy:縦方向
+
     while True:          # 無限ループ
         screen_img.blit(bg_img, bg_rect)        # 背景のSurfaceクラスを貼り付け
         screen_img.blit(tori_img, tori_rect)    # こうかとんのSurfaceクラスを貼り付け
@@ -48,6 +50,8 @@ def main():
             pg.Rect.move_ip(tori_rect, (-1, 0))   # こうかとんが左に1動く
         if key_states[pg.K_RIGHT] == True:        # [→]キーが押されているなら
             pg.Rect.move_ip(tori_rect, (1, 0))    # こうかとんが右に1動く
+
+        pg.Rect.move_ip(bom_rect, (vx, vy))       # 爆弾を vx, vy にしたがって移動させる
 
         pg.display.update()           # 画面を更新
 
