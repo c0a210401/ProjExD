@@ -27,7 +27,6 @@ def main():
 
     bom.set_colorkey("black")        # 描画した爆弾の黒色の部分を透明化
     bom_rect = bom.get_rect()        # 爆弾のRectクラスのオブジェクトを生成
-
     bom_rect.center = randint(0, screen_rect.width), randint(0, screen_rect.height)     # 爆弾の初期位置を画面内でランダムに指定
 
     vx, vy = 1, 1        # 爆弾の初期移動速度を指定 vx:横方向 vy:縦方向
