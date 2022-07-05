@@ -109,7 +109,6 @@ def main():
             return                                                  # main関数から抜ける
 
         pg.display.update()           # 画面を更新
-
         clock.tick(1000)              # 1000fps(1秒)の時を刻む
 
 
