@@ -41,17 +41,33 @@ def main():
             if event.type == pg.QUIT:           # ウィンドウの[×]ボタンが押されたら
                 return                          # main関数から抜ける
 
-        key_states = pg.key.get_pressed()         # どのキーが押されているかを取得
-        if key_states[pg.K_UP] == True:           # [↑]キーが押されているなら
-            pg.Rect.move_ip(tori_rect, (0, -1))   # こうかとんが上に1動く
-        if key_states[pg.K_DOWN] == True:         # [↓]キーが押されているなら
-            pg.Rect.move_ip(tori_rect, (0, 1))    # こうかとんが下に1動く
-        if key_states[pg.K_LEFT] == True:         # [←]キーが押されているなら
-            pg.Rect.move_ip(tori_rect, (-1, 0))   # こうかとんが左に1動く
-        if key_states[pg.K_RIGHT] == True:        # [→]キーが押されているなら
-            pg.Rect.move_ip(tori_rect, (1, 0))    # こうかとんが右に1動く
+        key_states = pg.key.get_pressed()               # どのキーが押されているかを取得
+        if key_states[pg.K_UP] == True:                 # [↑]キーが押されているなら
+            pg.Rect.move_ip(tori_rect, (0, -1))         # こうかとんが上に1動く
+            if tori_rect[1] <= 0:                       # 移動先が画面外の場合
+                pg.Rect.move_ip(tori_rect, (0, 1))      # 移動前の位置に戻す
+        if key_states[pg.K_DOWN] == True:               # [↓]キーが押されているなら
+            pg.Rect.move_ip(tori_rect, (0, 1))          # こうかとんが下に1動く
+            if tori_rect[1] >= 800:                     # 移動先が画面外の場合
+                pg.Rect.move_ip(tori_rect, (0, -1))     # 移動前の位置に戻す
+        if key_states[pg.K_LEFT] == True:               # [←]キーが押されているなら
+            pg.Rect.move_ip(tori_rect, (-1, 0))         # こうかとんが左に1動く
+            if tori_rect[0] <= 0:                       # 移動先が画面外の場合
+                pg.Rect.move_ip(tori_rect, (1, 0))      # 移動前の位置に戻す
+        if key_states[pg.K_RIGHT] == True:              # [→]キーが押されているなら
+            pg.Rect.move_ip(tori_rect, (1, 0))          # こうかとんが右に1動く
+            if tori_rect[0] >= 1500:                    # 移動先が画面外の場合
+                pg.Rect.move_ip(tori_rect, (-1, 0))     # 移動前の位置に戻す
 
-        pg.Rect.move_ip(bom_rect, (vx, vy))       # 爆弾を vx, vy にしたがって移動させる
+        pg.Rect.move_ip(bom_rect, (vx, vy))             # 爆弾を vx, vy にしたがって移動させる
+        if bom_rect[0] <= 0 or bom_rect[0] >= 1600:     # 爆弾の移動先が横方向から画面外に行く場合
+            vx = -vx                                    # 横方向の移動速度の符号を反転させる
+        if bom_rect[1] <= 0 or bom_rect[1] >= 900:      # 爆弾の移動先が縦方向から画面外に行く場合
+            vy = -vy                                    # 縦方向の移動速度の符号を反転させる
+
+        ban = pg.Rect.colliderect(tori_rect, bom_rect)     # こうかとんが爆弾にぶつかったかを判定
+        if ban == True:                                    # こうかとんが爆弾にぶつかった場合
+            return                    # main関数から抜ける
 
         pg.display.update()           # 画面を更新
 
