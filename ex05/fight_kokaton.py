@@ -4,7 +4,6 @@ from random import randint
 import tkinter.messagebox as tkm
 import datetime
 
-
 class Screen:
     def __init__(self, title, wh, image):
         pg.display.set_caption(title)                 # ウィンドウを作成
