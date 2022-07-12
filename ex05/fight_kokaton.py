@@ -1,4 +1,3 @@
-import sre_compile
 import pygame as pg
 import sys
 from random import randint
@@ -161,17 +160,10 @@ def main():
             slash.blit(scre)
 
             if banR == True:            # こうかとんが爆弾にぶつかった場合
-                sr = 1
-            if banG == True:
-                sg = 1
-            if banB == True:
-                sb = 1
-
-            if sr == 0:
                 bomr.Update(1, scre)
-            if sg == 0:
+            if banG == True:
                 bomg.Update(1, scre)
-            if sb == 0:
+            if banB == True:
                 bomb.Update(1, scre)
 
         else:
