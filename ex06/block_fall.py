@@ -58,9 +58,9 @@ class Ball(pg.sprite.Sprite):
 
     def Update(self, sr: Screen):
         pg.Rect.move_ip(self.rect, (self.vx, self.vy))         # 玉をvx, vy にしたがって移動させる
-        if self.rect[0] <= 0 or self.rect[0] >= sr.bgr.right:  # 玉の移動先が横方向から画面外に行く場合
+        if self.rect.left <= 0 or self.rect.right >= sr.bgr.right:  # 玉の移動先が横方向から画面外に行く場合
             self.vx = -self.vx                                 # 横方向の移動速度の符号を反転させる
-        if self.rect[1] <= 0 or self.rect[1] >= 500:           # 玉の移動先が縦方向から画面外に行く場合
+        if self.rect.top <= 0 or self.rect.bottom >= 500:           # 玉の移動先が縦方向から画面外に行く場合
             self.vy = -self.vy                                 # 縦方向の移動速度の符号を反転させる
 
         blocks_list = pg.sprite.spritecollide(self, self.blocks, True)
