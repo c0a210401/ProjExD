@@ -1,4 +1,4 @@
-# 第6回   C0A21040 北村 耕大
+# 第6回
 ## ブロック崩し(ex06/block_fall.py)
 ### ゲーム概要
 - ex06/block_fall.pyを実行すると，400x500の灰色のスクリーンに赤色のボール、緑色のバー、合計100個の青のブロックが描画される
@@ -21,7 +21,10 @@
 - 参考サイト1：https://daeudaeu.com/tkinter-breakout/
 - 参考サイト2：https://mulberrytassel.com/python-practice-pygame-8/
 
+### README作成者
+C0A21040 北村 耕大
+
 ### README作成協力者
-C0B21183 
-C0A21032 
+C0B21183 杉本 英吾
+C0A21032 加藤 蓮
 C0A21012 石川 響
