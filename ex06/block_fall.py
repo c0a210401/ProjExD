@@ -6,10 +6,7 @@ import copy
 
 BAR_POS = 30    # 棒の画面最下部からの距離
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 222b0b27ffd3a84c50e0d73b6887863dcabe9d7d
 class Screen:
     def __init__(self, title, wh, image):
         pg.display.set_caption(title)                   # ウィンドウを作成
@@ -19,10 +16,7 @@ class Screen:
 
     def blit(self):
         self.scr.blit(self.images, self.rect)           # 背景のSurfaceクラスを貼り付け
-<<<<<<< HEAD
 
-=======
->>>>>>> 222b0b27ffd3a84c50e0d73b6887863dcabe9d7d
 
 class Bar(pg.sprite.Sprite):
     def __init__(self, name, size, sr: Screen):
@@ -50,7 +44,6 @@ class Bar(pg.sprite.Sprite):
 
         self.blit(sr)
 
-<<<<<<< HEAD
 
 class Ball(pg.sprite.Sprite):
     def __init__(self, name, vxy, size, blocks, score):
@@ -67,24 +60,6 @@ class Ball(pg.sprite.Sprite):
 
         self.score = score                                     #スコア表示を参照
         self.hit = 0                                           #ブロックを破壊した際のカウント
-=======
-class Ball(pg.sprite.Sprite):
-    def __init__(self, name, vxy, size, blocks, score):
-        pg.sprite.Sprite.__init__(self)                       # 初期化処理
-        self.image = pg.image.load(name).convert_alpha()      # ボールの画像をピクセル変換処理したSurfaceクラスを作成
-        self.image = pg.transform.scale(self.image, size)     # ボールの画像の大きさをsize倍に設定
-
-        self.image.set_colorkey("black")            # 描画したボールの黒色の部分を透明化
-        self.rect = self.image.get_rect()           # ボールのRectクラスのオブジェクトを生成
-        self.rect.center = randint(0, 400), randint(200, 500 - BAR_POS) # ボールを描画する位置を一定の範囲内でランダムに指定(x:0~400, y:200~470)
-
-        self.blocks = blocks                        # ブロックを参照
-        self.vx, self.vy = vxy                      # ボールの初期移動速度を指定 vx〇:横方向速度 vy〇:縦方向速度
-
-        self.score = score                                     #スコア表示を参照
-        self.hit = 0                                           #ブロックを破壊した際のカウント
-
->>>>>>> 222b0b27ffd3a84c50e0d73b6887863dcabe9d7d
 
     def blit(self, sr: Screen):
         sr.scr.blit(self.image, self.rect)                     # ボールのSurfaceクラスを貼り付け
@@ -130,7 +105,6 @@ class Ball(pg.sprite.Sprite):
 
         self.blit(sr)
 
-<<<<<<< HEAD
 
 class Block(pg.sprite.Sprite):
     def __init__(self, name, x, y, size):
@@ -138,14 +112,6 @@ class Block(pg.sprite.Sprite):
         self.image = pg.image.load(name).convert()             # ブロックの画像をピクセル変換処理したSurfaceクラスを作成
         self.image = pg.transform.scale(self.image, size)      # ブロックの画像の大きさをsize倍に設定
 
-=======
-class Block(pg.sprite.Sprite):
-    def __init__(self, name, x, y, size):
-        pg.sprite.Sprite.__init__(self)                        # 初期化処理
-        self.image = pg.image.load(name).convert()             # ブロックの画像をピクセル変換処理したSurfaceクラスを作成
-        self.image = pg.transform.scale(self.image, size)      # ブロックの画像の大きさをsize倍に設定
-
->>>>>>> 222b0b27ffd3a84c50e0d73b6887863dcabe9d7d
         self.rect = self.image.get_rect()             # ブロックのRectクラスのオブジェクトを生成
         self.rect.left = x * self.rect.width          # ブロックのx軸の位置を設定
         self.rect.top  = y * self.rect.height         # ブロックのy軸の位置を設定
@@ -153,10 +119,7 @@ class Block(pg.sprite.Sprite):
     def draw(self, sr: Screen):
         sr.scr.blit(self.image, self.rect)            # ブロックのSurfaceクラスを貼り付け
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 222b0b27ffd3a84c50e0d73b6887863dcabe9d7d
 # C0B21183 杉本 英吾　#s
 class Score():
     def __init__(self, x, y):
@@ -199,11 +162,7 @@ def main():
         bar.update(scre)                        # 棒を表示するための画面の更新
         bal.update(scre)                        # 玉を表示するための画面の更新
 
-<<<<<<< HEAD
         for event in pg.event.get():            # イベントを繰り返して処理する
-=======
-        for event in pg.event.get():            # イベントを繰り返して処理
->>>>>>> 222b0b27ffd3a84c50e0d73b6887863dcabe9d7d
             if event.type == pg.QUIT:           # ウィンドウの[×]ボタンが押されたら
                 return                          # main関数から抜ける        
         
@@ -215,4 +174,4 @@ if __name__ == "__main__":
     pg.init()            # pygameモジュールを初期化
     main()               # main関数を呼び出す
     pg.quit()            # pygameモジュールの初期化を解除
-    sys.exit()           # プログラム終了
+    sys.exit()           # プログラムを終了
