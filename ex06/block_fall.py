@@ -21,7 +21,11 @@ class Screen:
 class Bar(pg.sprite.Sprite):
     def __init__(self, name, size, sr: Screen):
         pg.sprite.Sprite.__init__(self)                        # 初期化処理
+<<<<<<< HEAD
         self.image = pg.image.load(name).convert()             # 棒の画像をピクセル変換処したSurfaceクラスを作成
+=======
+        self.image = pg.image.load(name).convert()             # 棒の画像をピクセル変換処理したSurfaceクラスを作成
+>>>>>>> upstream/main
         self.image = pg.transform.scale(self.image, size)      # 棒の画像の大きさをsize倍に設定
 
         self.image.set_colorkey("black")                       # 描画した棒の黒色の部分を透明化
@@ -48,7 +52,11 @@ class Bar(pg.sprite.Sprite):
 class Ball(pg.sprite.Sprite):
     def __init__(self, name, vxy, size, blocks, score):
         pg.sprite.Sprite.__init__(self)                       # 初期化処理
+<<<<<<< HEAD
         self.image = pg.image.load(name).convert_alpha()      # ボールの画像をピクセル変換処したSurfaceクラスを作成
+=======
+        self.image = pg.image.load(name).convert_alpha()      # ボールの画像をピクセル変換処理したSurfaceクラスを作成
+>>>>>>> upstream/main
         self.image = pg.transform.scale(self.image, size)     # ボールの画像の大きさをsize倍に設定
 
         self.image.set_colorkey("black")            # 描画したボールの黒色の部分を透明化
@@ -59,13 +67,17 @@ class Ball(pg.sprite.Sprite):
         self.vx, self.vy = vxy                      # ボールの初期移動速度を指定 vx〇:横方向速度 vy〇:縦方向速度
 
         self.score = score                                     #スコア表示を参照
+<<<<<<< HEAD
         self.hit = 0                                           #ブロックを破壊した回数
-
+=======
+        self.hit = 0                                           #ブロックを破壊した際のカウント
+>>>>>>> upstream/main
 
     def blit(self, sr: Screen):
         sr.scr.blit(self.image, self.rect)                     # ボールのSurfaceクラスを貼り付け
 
     def Update(self, sr: Screen):
+<<<<<<< HEAD
         pg.Rect.move_ip(self.rect, (self.vx, self.vy))               # ボールをvx, vy にしたがって移動させる
         if self.rect.left <= 0 or self.rect.right >= sr.rect.right:   # ボールうの移動先が横方向から画面外に行く場合
             self.vx = -self.vx                                       # 横方向の移動速度の符号を反転させる
@@ -77,6 +89,23 @@ class Ball(pg.sprite.Sprite):
             self.hit += 10                              
             self.score.add_score(self.hit)
             self.hit = 0
+=======
+        pg.Rect.move_ip(self.rect, (self.vx, self.vy))                # ボールをvx, vy にしたがって移動させる
+        #C0A21032 加藤 蓮  #k
+        if self.rect.left <= 0 or self.rect.right >= sr.rect.right:   # ボールの移動先が横方向から画面外に行く場合
+            self.vx = -self.vx                                        # 横方向の移動速度の符号を反転させる
+        if self.rect.top <= 0 or self.rect.bottom >= 500:             # ボールの移動先が縦方向から画面外に行く場合
+            self.vy = -self.vy                                        # 縦方向の移動速度の符号を反転させる
+        #k
+
+        blocks_list = pg.sprite.spritecollide(self, self.blocks, True)   # ボールとぶつかったブロックを削除
+        if len(blocks_list) > 0:                        # ブロックとボールの接触があった場合
+            #s
+            self.hit += 10                              # スコアに10をカウント
+            self.score.add_score(self.hit)              # スコアに10を追加
+            self.hit = 0                                # スコアカウントを初期化
+            #s
+>>>>>>> upstream/main
             ball_rect = copy.copy(self.rect)            # ボールオブジェクトの位置を保存
             for block in blocks_list:                   # 接触したブロックを取り出す
                 if block.rect.top > ball_rect.top and block.rect.bottom > ball_rect.bottom and self.vy > 0:
@@ -115,6 +144,7 @@ class Block(pg.sprite.Sprite):
 
     def draw(self, sr: Screen):
         sr.scr.blit(self.image, self.rect)            # ブロックのSurfaceクラスを貼り付け
+<<<<<<< HEAD
 
 # C0B21183 杉本 英吾 #s
 class Score():
@@ -130,26 +160,60 @@ class Score():
     def add_score(self,x):
         self.score += x                          # scoreに点数を追加
 #s 
- 
-def main():
+
+ def main():
     clock = pg.time.Clock()                                            # 時間計測用のオブジェクトを生成
     scre = Screen("ブロック崩し", (400, 500), "fig/ダウンロード.png")   # 400x500のスクリーンを生成
     scre.blit()                                                        # 背景のSurfaceクラスを貼り付け
 
+=======
+
+# C0B21183 杉本 英吾　#s
+class Score():
+    def __init__(self, x, y):
+        self.sysfont = pg.font.SysFont(None,30)       # 文字のフォント設定
+        self.score = 0                                # スコアの数値を初期化
+        self.x, self.y = x, y                         # スコアの初期位置を設定
+
+    def draw(self, sr: Screen):
+        img = self.sysfont.render("SCORE:"+str(self.score), True, (255,0,0))     # スコアのSurfaceクラスを作成
+        sr.scr.blit(img, (self.x, self.y))                                       # スコアのSurfaceクラスを貼り付け
+
+    def add_score(self,x):
+        self.score += x                              # scoreに点数を追加
+#s 
+
+
+def main():
+    clock = pg.time.Clock()                                            # 時間計測用のオブジェクトを生成
+    scre = Screen("ブロック崩し", (400, 500), "fig/ダウンロード.png")    # 400x500のスクリーンを生成
+    scre.blit()                                                        # 背景のSurfaceクラスを貼り付け
+
+>>>>>>> upstream/main
     blocks = pg.sprite.Group()                                    # ブロックのグループを作成
     for x in range(10):
         for y in range(10):
             blocks.add(Block("fig/block.PNG", x, y, (40, 20)))    # ブロックを生成
+<<<<<<< HEAD
     score = Score(0, 0)
     bar = Bar("fig/bar.png", (150, 20), scre)                     # 棒を生成
     bal = Ball("fig/ball.png", (1, 1), (20, 20), blocks,score)          # ボールを生成
+=======
+    score = Score(0, 0)                                           # スコア表示を生成    #s
+    bar = Bar("fig/bar.png", (150, 20), scre)                     # 棒を生成
+    bal = Ball("fig/ball.png", (1, 1), (20, 20), blocks, score)    # ボールを生成
+>>>>>>> upstream/main
 
     while True:                 # 無限ループ
         scre.blit()             # 背景のSurfaceクラスを貼り付け
         bal.blit(scre)          # ボールのSurfaceクラスを貼り付け
         bar.blit(scre)          # 棒のSurfaceクラスを貼り付け
         blocks.draw(scre.scr)   # ブロックのSurfaceクラスを貼り付け
+<<<<<<< HEAD
         score.draw(scre)  
+=======
+        score.draw(scre)        # スコアのSurfaceクラスを貼り付け   #s
+>>>>>>> upstream/main
 
         tf = pg.Rect.colliderect(bar.rect, bal.rect)   # ボールが棒にぶつかったかを判定
         if tf == True:                                 # ぶつかっていた場合
