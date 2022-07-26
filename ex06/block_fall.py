@@ -6,6 +6,7 @@ import copy
 
 BAR_POS = 30    # 棒の画面最下部からの距離
 
+
 class Screen:
     def __init__(self, title, wh, image):
         pg.display.set_caption(title)                   # ウィンドウを作成
@@ -15,6 +16,7 @@ class Screen:
 
     def blit(self):
         self.scr.blit(self.images, self.rect)           # 背景のSurfaceクラスを貼り付け
+
 
 class Bar(pg.sprite.Sprite):
     def __init__(self, name, size, sr: Screen):
@@ -41,6 +43,7 @@ class Bar(pg.sprite.Sprite):
                 pg.Rect.move_ip(self.rect, (-1, 0))           # 移動前の位置に戻す
 
         self.blit(sr)
+
 
 class Ball(pg.sprite.Sprite):
     def __init__(self, name, vxy, size, blocks, score):
@@ -103,6 +106,7 @@ class Ball(pg.sprite.Sprite):
 
         self.blit(sr)
 
+
 class Block(pg.sprite.Sprite):
     def __init__(self, name, x, y, size):
         pg.sprite.Sprite.__init__(self)                        # 初期化処理
@@ -115,6 +119,7 @@ class Block(pg.sprite.Sprite):
 
     def draw(self, sr: Screen):
         sr.scr.blit(self.image, self.rect)            # ブロックのSurfaceクラスを貼り付け
+
 
 # C0B21183 杉本 英吾　#s
 class Score():
@@ -130,6 +135,7 @@ class Score():
     def add_score(self,x):
         self.score += x                              # scoreに点数を追加
 #s 
+
 
 def main():
     clock = pg.time.Clock()                                            # 時間計測用のオブジェクトを生成
