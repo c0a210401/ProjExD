@@ -29,7 +29,7 @@ class Bar(pg.sprite.Sprite):
     def blit(self, sr: Screen):
         sr.scr.blit(self.image, self.rect)                    # 棒のSurfaceクラスを貼り付け
 
-    def Update(self, sr: Screen):
+    def update(self, sr: Screen):
         key_states = pg.key.get_pressed()                     # どのキーが押されているかを取得
         if key_states[pg.K_LEFT]:                             # [←]キーが押されているなら
             pg.Rect.move_ip(self.rect, (-1, 0))               # 棒が左に1動く
@@ -62,7 +62,7 @@ class Ball(pg.sprite.Sprite):
     def blit(self, sr: Screen):
         sr.scr.blit(self.image, self.rect)                     # ボールのSurfaceクラスを貼り付け
 
-    def Update(self, sr: Screen):
+    def update(self, sr: Screen):
         pg.Rect.move_ip(self.rect, (self.vx, self.vy))                # ボールをvx, vy にしたがって移動させる
         #C0A21032 加藤 蓮  #k
         if self.rect.left <= 0 or self.rect.right >= sr.rect.right:   # ボールの移動先が横方向から画面外に行く場合
@@ -155,8 +155,8 @@ def main():
         if tf == True:                                 # ぶつかっていた場合
             bal.reflect(scre)                          # ボールを反射させる
 
-        bar.Update(scre)                        # 棒を表示するための画面の更新
-        bal.Update(scre)                        # 玉を表示するための画面の更新
+        bar.update(scre)                        # 棒を表示するための画面の更新
+        bal.update(scre)                        # 玉を表示するための画面の更新
 
         for event in pg.event.get():            # イベントを繰り返して処理
             if event.type == pg.QUIT:           # ウィンドウの[×]ボタンが押されたら
